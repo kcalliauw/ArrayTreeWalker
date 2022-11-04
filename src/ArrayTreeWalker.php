@@ -47,7 +47,7 @@ class ArrayTreeWalker implements ArrayAccess, Countable, IteratorAggregate
      */
     public function __construct($tree, $bindingName = 'edges', $hash = null)
     {
-        $this->tree = method_exists($tree, 'toArray') ? $tree->toArray() : (array)$tree;
+        $this->tree = ( is_object($tree) && method_exists($tree, 'toArray') ) ? $tree->toArray() : (array)$tree;
 
         $this->bindingName = $bindingName;
 
